@@ -1,0 +1,32 @@
+ 
+ 
+ # to run this file and create this docker: open terminal from this file location and run: 'docker-complse up' - docker-compose is the file name
+ 
+version: "3.8"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+
+  rabbitmq:
+    image: rabbitmq:management
+    restart: always
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+    hostname: rabbitmq
+
+volumes:
+  mongodbdata:
+  rabbitmqdata:
+
+# run this container file: docker-compose up -d
