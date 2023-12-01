@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Members", "Members\Members.csproj", "{BF56D00B-EDC2-49C0-895A-A2C721595088}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Members", "..\Eyal.Microservices.shop - Copy (2)\Members\Members\Members.csproj", "{7540244A-E775-416C-8351-921CC1264AAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF56D00B-EDC2-49C0-895A-A2C721595088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF56D00B-EDC2-49C0-895A-A2C721595088}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF56D00B-EDC2-49C0-895A-A2C721595088}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF56D00B-EDC2-49C0-895A-A2C721595088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7540244A-E775-416C-8351-921CC1264AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7540244A-E775-416C-8351-921CC1264AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7540244A-E775-416C-8351-921CC1264AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7540244A-E775-416C-8351-921CC1264AAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
