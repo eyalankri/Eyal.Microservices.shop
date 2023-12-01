@@ -7,17 +7,24 @@ using System.Text;
 using Members.Entities;
 using Common.MongoDB;
 using Common.MassTransit;
+using Common.Jwt;
+using Microsoft.Extensions.Configuration;
+using Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
+
+var jwtConfig = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 
 
 // Services is IServiceCollection
 builder.Services
         .AddMongo()
         .AddMongoRepository<User>("User") // add `User` table to the db name declared in appsettings
-        .AddMassTransitWithRabbitMq();
+        .AddMassTransitWithRabbitMq()
+        .AddJwtAuthentication(jwtConfig!);
 
 
 
@@ -32,20 +39,20 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//JWT
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["JwtSettings:Audience"],
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!))
-    };
-});
+////JWT
+//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+//{
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = true,
+//        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+//        ValidateAudience = true,
+//        ValidAudience = builder.Configuration["JwtSettings:Audience"],
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true,
+//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!))
+//    };
+//});
 
 
 var app = builder.Build();

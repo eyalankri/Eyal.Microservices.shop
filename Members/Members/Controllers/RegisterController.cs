@@ -54,6 +54,6 @@ public class RegisterController : ControllerBase
 
         await _userRepository.CreateAsync(newUser);
         
-        return Ok("User created");
+        return Ok(newUser.AsDto());
     }
 }
