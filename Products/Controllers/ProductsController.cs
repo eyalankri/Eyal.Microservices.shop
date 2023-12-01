@@ -1,5 +1,6 @@
 ﻿using Common.Repositories;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Products.Entities;
 using static Common.Contracts.Products;
@@ -46,6 +47,7 @@ namespace Products.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<IReadOnlyCollection<ProductDto>>> GetAllAsync()
         { 
         
