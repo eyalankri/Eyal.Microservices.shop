@@ -21,6 +21,7 @@ namespace Products.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<ProductDto>> PostAsync(CreateProductDto createProductDto)
         {
             var product = new Product
@@ -47,7 +48,6 @@ namespace Products.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<IReadOnlyCollection<ProductDto>>> GetAllAsync()
         { 
         

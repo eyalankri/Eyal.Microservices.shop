@@ -6,8 +6,9 @@ namespace Orders
     {
         public static OrderDto AsDto(this Order order, List<Product> products)
         {
+            // change guid to the userId
             
-            return new OrderDto(order.Id, order.DateCreated, order.TotalPrice, products);
+            return new OrderDto(order.Id, Guid.NewGuid(), order.DateCreated, order.TotalPrice, products);
         }
     }
 }

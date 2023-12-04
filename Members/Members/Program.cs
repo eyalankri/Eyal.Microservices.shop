@@ -38,22 +38,7 @@ builder.Services.AddEndpointsApiExplorer();
 // add the option to enter token in Swagger (lock icon)
 builder.Services.AddSwaggerGen();
 
-
-////JWT
-//builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-//{
-//    options.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = true,
-//        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
-//        ValidateAudience = true,
-//        ValidAudience = builder.Configuration["JwtSettings:Audience"],
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!))
-//    };
-//});
-
+ 
 
 var app = builder.Build();
 

@@ -1,7 +1,3 @@
- 
- 
- # to run this file and create this docker: open terminal from this file location and run: 'docker-complse up' - docker-compose is the file name
- 
 version: "3.8"
 
 services:
@@ -13,20 +9,37 @@ services:
       - 27017:27017
     volumes:
       - mongodbdata:/data/db
-
+        
   rabbitmq:
     image: rabbitmq:management
     restart: always
     container_name: rabbitmq
     ports:
-      - 5672:5672
-      - 15672:15672
+      - 5672:5672   
+      - 15672:15672 #for management
     volumes:
       - rabbitmqdata:/var/lib/rabbitmq
     hostname: rabbitmq
 
+# ports: from launchSettings.json:  "applicationUrl": "https://localhost:7270;http://localhost:5143" 
+  products:
+    container_name: productapp
+    image: productapp
+    build:
+      context: .
+      dockerfile: Products/Dockerfile
+    ports:
+      - 5143:80
+      - 7270:443
+    links:
+      - mongo
+      - rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
+    volumes:
+      - ./cert.pem:/app/cert  # Mount the directory containing your certificate files
+
 volumes:
   mongodbdata:
   rabbitmqdata:
-
-# run this container file: docker-compose up -d
