@@ -5,14 +5,17 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>e7f34a90-c826-4858-876b-4375735ba1a3</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-    <PackageReference Include="Common" Version="1.1.6" />
+    <PackageReference Include="EyalShop.Common" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.0.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.12" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.3" />

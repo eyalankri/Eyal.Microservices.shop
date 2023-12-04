@@ -16,7 +16,7 @@ services:
     restart: always
     container_name: rabbitmq
     ports:
-      - 5672:5672   
+      - 5672:5672
       - 15672:15672 #for management
     volumes:
       - rabbitmqdata:/var/lib/rabbitmq
@@ -40,6 +40,7 @@ services:
       - mongo
       - rabbitmq
 
+
   orders:
     container_name: ordersapp
     image: ordersapp
@@ -56,6 +57,24 @@ services:
     depends_on:
       - mongo
       - rabbitmq      
+
+
+  members:
+    container_name: membersapp
+    image: membersapp
+    build:
+      context: .
+      dockerfile: Members/Dockerfile
+    ports:
+      - 5057:80
+      - 7052:443
+        #ports: from launchSettings.json:  "applicationUrl": "https://localhost:7270;http://localhost:5143" 
+    links:
+      - mongo
+      - rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq
 
 volumes:
   mongodbdata:
