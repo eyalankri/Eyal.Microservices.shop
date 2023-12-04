@@ -1,6 +1,6 @@
-﻿using Products.Entities;
+﻿using Orders.Entities;
 
-namespace Products
+namespace Orders
 {
     public static class Extensions
     {

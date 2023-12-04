@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Products
+namespace Orders
 {
     // record: a simple immutible type that is not changed after it is created
     public record ProductDto(Guid Id, string Name, string Description, decimal Price, int CategoryId, DateTimeOffset DateCreated);

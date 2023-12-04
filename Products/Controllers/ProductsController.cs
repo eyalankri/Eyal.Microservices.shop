@@ -2,10 +2,10 @@
 using MassTransit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Products.Entities;
+using Orders.Entities;
 using static Common.Contracts.Products;
 
-namespace Products.Controllers
+namespace Orders.Controllers
 {
     [ApiController]
     [Route("[controller]")]

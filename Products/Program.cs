@@ -2,7 +2,7 @@ using Common.Jwt;
 using Common.MassTransit;
 using Common.MongoDB;
 using Common.Settings;
-using Products.Entities;
+using Orders.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

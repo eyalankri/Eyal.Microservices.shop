@@ -1,6 +1,6 @@
 ﻿using Common;
 
-namespace Products.Entities
+namespace Orders.Entities
 {
     public class Product : IEntity
     {
