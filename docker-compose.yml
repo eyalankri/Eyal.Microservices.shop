@@ -9,7 +9,8 @@ services:
       - 27017:27017
     volumes:
       - mongodbdata:/data/db
-        
+
+
   rabbitmq:
     image: rabbitmq:management
     restart: always
@@ -21,7 +22,7 @@ services:
       - rabbitmqdata:/var/lib/rabbitmq
     hostname: rabbitmq
 
-# ports: from launchSettings.json:  "applicationUrl": "https://localhost:7270;http://localhost:5143" 
+
   products:
     container_name: productapp
     image: productapp
@@ -31,14 +32,30 @@ services:
     ports:
       - 5143:80
       - 7270:443
+        #ports: from launchSettings.json:  "applicationUrl": "https://localhost:7270;http://localhost:5143" 
     links:
       - mongo
       - rabbitmq
     depends_on:
       - mongo
       - rabbitmq
-    volumes:
-      - ./cert.pem:/app/cert  # Mount the directory containing your certificate files
+
+  orders:
+    container_name: ordersapp
+    image: ordersapp
+    build:
+      context: .
+      dockerfile: Orders/Dockerfile
+    ports:
+      - 5006:80
+      - 7131:443
+        #ports: from launchSettings.json:  "applicationUrl": "https://localhost:7270;http://localhost:5143" 
+    links:
+      - mongo
+      - rabbitmq
+    depends_on:
+      - mongo
+      - rabbitmq      
 
 volumes:
   mongodbdata:

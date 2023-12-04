@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-var jwtConfig = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
+var jwtConfig = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>(); //JwtSettings from Common.
 
 
 builder.Services

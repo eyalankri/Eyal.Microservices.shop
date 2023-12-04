@@ -8,7 +8,7 @@ using static Common.Contracts.Products;
 namespace Products.Controllers
 {
     [ApiController]
-    [Route("products")]
+    [Route("[controller]")]
     public class ProductsController : Controller
     {
         private readonly IRepository<Product> productRepository;

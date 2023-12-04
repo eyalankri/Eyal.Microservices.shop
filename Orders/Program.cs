@@ -1,5 +1,7 @@
+using Common.Jwt;
 using Common.MassTransit;
 using Common.MongoDB;
+using Common.Settings;
 using Orders.Clients;
 using Orders.Entities;
 using Polly;
@@ -14,13 +16,15 @@ internal class Program
         // Add services to the container.
 
 
+        var jwtConfig = builder.Configuration.GetSection(nameof(JwtSettings)).Get<JwtSettings>(); //JwtSettings from Common.
 
         // Services is IServiceCollection
         builder.Services
                 .AddMongo()
                 .AddMongoRepository<Order>("orders") // add `orders` table to the db name declared in appsettings
                 .AddMongoRepository<Product>("products") // add `orders` table to the db name declared in appsettings
-                .AddMassTransitWithRabbitMq();
+                .AddMassTransitWithRabbitMq()
+                .AddJwtAuthentication(jwtConfig!);
 
 
 
@@ -57,21 +61,21 @@ internal class Program
         {
             client.BaseAddress = new Uri("https://localhost:7270");
         })
-            // Add a transient HTTP error policy that will retry for 5 times, waiting for 5 seconds between retries, for the following errors:
-                // * HttpRequestException
-                // * TimeoutRejectedException
+        // Add a transient HTTP error policy that will retry for 5 times, waiting for 5 seconds between retries, for the following errors:
+        // * HttpRequestException
+        // * TimeoutRejectedException
         .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>()
             .WaitAndRetryAsync(
-                5,retryAttempt => TimeSpan.FromSeconds(5)
+                5, retryAttempt => TimeSpan.FromSeconds(5)
         ))
-            // Add a transient HTTP error policy that will open the circuit for 15 seconds after 3 consecutive failures for the following errors:
-                // * HttpRequestException
-                // * TimeoutRejectedException
+        // Add a transient HTTP error policy that will open the circuit for 15 seconds after 3 consecutive failures for the following errors:
+        // * HttpRequestException
+        // * TimeoutRejectedException
         .AddTransientHttpErrorPolicy(builder => builder.Or<TimeoutRejectedException>().CircuitBreakerAsync(
             3,
-            TimeSpan.FromSeconds(15)            
+            TimeSpan.FromSeconds(15)
         ))
-            // Add a policy that will timeout HTTP requests after 1 second.
+        // Add a policy that will timeout HTTP requests after 1 second.
         .AddPolicyHandler(Policy.TimeoutAsync<HttpResponseMessage>(1));
     }
 
