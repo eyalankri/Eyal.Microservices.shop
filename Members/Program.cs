@@ -1,14 +1,7 @@
-
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Members.Entities;
 using Common.MongoDB;
 using Common.MassTransit;
 using Common.Jwt;
-using Microsoft.Extensions.Configuration;
 using Common.Settings;
 
 var builder = WebApplication.CreateBuilder(args);

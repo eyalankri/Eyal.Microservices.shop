@@ -1,6 +1,7 @@
 ﻿using Common.Repositories;
 using Members.Constants;
 using Members.Entities;
+using Members.Settings;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,15 +15,14 @@ public class RegisterController : ControllerBase
 {
 
     private readonly IConfiguration _config;
-    private readonly IRepository<User> _userRepository;
-    private readonly string? _salt;
-
+    private readonly IRepository<User> _userRepository;    
+    private readonly MembersApiSettings _membersApiSettings;
 
     public RegisterController(IConfiguration config, IRepository<User> userRepository)
     {
         _userRepository = userRepository;
         _config = config;
-        _salt = _config["MembersApi:PasswordSalt"]; //secret
+        _membersApiSettings = _config.GetSection(nameof(MembersApiSettings)).Get<MembersApiSettings>()!;
     }
 
     [AllowAnonymous]
@@ -41,7 +41,7 @@ public class RegisterController : ControllerBase
             return NotFound("Email is already exists");
         }
 
-        string passwordHash = BCrypt.Net.BCrypt.HashPassword(createUserDto.Password, _salt);
+        string passwordHash = BCrypt.Net.BCrypt.HashPassword(createUserDto.Password, _membersApiSettings.PasswordSalt);
 
         var newUser = new User
         {
