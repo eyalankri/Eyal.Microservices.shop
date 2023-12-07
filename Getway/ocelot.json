@@ -1,0 +1,36 @@
+{
+  "Routes": [
+    {
+      // Orders:
+      "DownstreamPathTemplate": "/Order/orders",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5006
+        }
+      ],
+      "UpstreamPathTemplate": "/Orders",
+      "UpstreamHttpMethod": [ "GET", "POST" ]
+    },
+
+    {
+      // JwtMembers:
+      "DownstreamPathTemplate": "/Login",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5057
+        }
+      ],
+      "UpstreamPathTemplate": "/login",
+      "UpstreamHttpMethod": [ "POST" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+  }
+}
+

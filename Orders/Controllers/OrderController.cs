@@ -1,4 +1,5 @@
 using Common.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Orders.Entities;
 
@@ -62,6 +63,7 @@ public class OrderController : ControllerBase
 
     [HttpGet]
     [Route("orders")]
+    [Authorize]
     public async Task<ActionResult<IReadOnlyCollection<OrderDto>>> GetAllAsync()
     {
 

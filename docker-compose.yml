@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mongo:
-    image: mongo
+    image: mongo:1.0.0
     restart: always
     container_name: mongo
     ports:
@@ -25,7 +25,7 @@ services:
 
   products:
     container_name: productapp
-    image: productapp
+    image: productapp:1.0.0
     build:
       context: .
       dockerfile: Products/Dockerfile
@@ -42,7 +42,7 @@ services:
 
 
   orders:
-    container_name: ordersapp
+    container_name: ordersapp:1.0.0
     image: ordersapp
     build:
       context: .
@@ -60,7 +60,7 @@ services:
 
 
   members:
-    container_name: membersapp
+    container_name: membersapp:1.0.0
     image: membersapp
     build:
       context: .
