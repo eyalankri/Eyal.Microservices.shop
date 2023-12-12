@@ -25,7 +25,14 @@
         }
       ],
       "UpstreamPathTemplate": "/login",
-      "UpstreamHttpMethod": [ "POST" ]
+      "UpstreamHttpMethod": [ "POST" ],
+      "CorsOptions": {
+        "AllowedOrigins": [ "http://localhost:8080" ],
+        "AllowedMethods": [ "POST" ],
+        "AllowedHeaders": [ "*" ],
+        "SupportsCredentials": true
+      }
+
     }
   ],
   "GlobalConfiguration": {

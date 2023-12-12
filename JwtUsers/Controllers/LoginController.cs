@@ -3,6 +3,7 @@ using Common.Settings;
 using Members.Entities;
 using Members.Settings;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,7 +12,7 @@ using System.Text;
 
 namespace Members.Controllers
 {
-    [Route("[controller]")]
+    [Route("[controller]")]  
     [ApiController]
     public class LoginController : ControllerBase
     {
@@ -38,6 +39,7 @@ namespace Members.Controllers
         }
 
         [AllowAnonymous]
+        [EnableCors]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginUserDto loginUserDto)
         {

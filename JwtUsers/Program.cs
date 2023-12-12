@@ -20,6 +20,17 @@ builder.Services
         .AddJwtAuthentication(jwtConfig!);
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin", builder =>
+    {
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();            
+    });
+});
+
 
 builder.Services.AddControllers();
 
@@ -41,6 +52,7 @@ if (app.Environment.IsDevelopment() || true)
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("AllowAnyOrigin"); // Apply CORS before routing and Ocelot
 
 app.UseHttpsRedirection();
 
