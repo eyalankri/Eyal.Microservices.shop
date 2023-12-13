@@ -12,8 +12,9 @@ using System.Text;
 
 namespace Members.Controllers
 {
-    [Route("[controller]")]  
+    [Route("[controller]")]
     [ApiController]
+    [EnableCors]
     public class LoginController : ControllerBase
     {
         private readonly IConfiguration _config;
@@ -39,7 +40,6 @@ namespace Members.Controllers
         }
 
         [AllowAnonymous]
-        [EnableCors]
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginUserDto loginUserDto)
         {
